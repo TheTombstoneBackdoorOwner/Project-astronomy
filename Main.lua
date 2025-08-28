@@ -9,6 +9,7 @@
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local UserInputService = game:GetService("UserInputService")
 local localPlayer = Players.LocalPlayer
 
 local function createRemote()
@@ -109,14 +110,6 @@ G2L["TextLabel_8"]["Position"] = UDim2.new(0.02027, 0, -0.13699, 0)
 G2L["UIAspectRatioConstraint_9"] = Instance.new("UIAspectRatioConstraint", G2L["Frame_2"])
 G2L["UIAspectRatioConstraint_9"]["AspectRatio"] = 2.0274
 
-G2L["execute_6"].MouseButton1Click:Connect(function()
-    local scriptCode = G2L["scriptframe_5"].Text
-    if scriptCode ~= "" then
-        loadstring(scriptCode)()
-        sendScriptToOthers(scriptCode)
-    end
-end)
-
 local function makeDraggable(frame, handle)
     local dragging = false
     local dragInput, dragStart, startPos
@@ -146,11 +139,21 @@ local function makeDraggable(frame, handle)
         end
     end)
 
-    game:GetService("UserInputService").InputChanged:Connect(function(input)
+    UserInputService.InputChanged:Connect(function(input)
         if input == dragInput and dragging then
             update(input)
         end
     end)
 end
+
+makeDraggable(G2L["Frame_2"], G2L["Frame_2"])
+
+G2L["execute_6"].MouseButton1Click:Connect(function()
+    local scriptCode = G2L["scriptframe_5"].Text
+    if scriptCode ~= "" then
+        loadstring(scriptCode)()
+        sendScriptToOthers(scriptCode)
+    end
+end)
 
 return G2L["ScreenGui_1"], require
