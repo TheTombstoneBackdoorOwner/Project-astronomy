@@ -44,6 +44,8 @@ G2L["Frame_2"]["BackgroundColor3"] = Color3.fromRGB(161, 161, 161);
 G2L["Frame_2"]["Size"] = UDim2.new(0.23125, 0, 0.19677, 0);
 G2L["Frame_2"]["Position"] = UDim2.new(0.19844, 0, 0.06739, 0);
 G2L["Frame_2"]["BackgroundTransparency"] = 0.25;
+G2L["Frame_2"].Active = true
+G2L["Frame_2"].Draggable = true
 
 G2L["UICorner_3"] = Instance.new("UICorner", G2L["Frame_2"]);
 
